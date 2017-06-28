@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     static FloatingActionButton playPreviousButton;
     PlayerService mBoundService;
     boolean mServiceBound = false;
-    int currentSongIndex = 0;
+   static  int currentSongIndex = 0;
 
     List<Song> songs= new ArrayList<>();
 
@@ -100,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
         playPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playPreviousSong ();
+
                 if (mServiceBound)
                     mBoundService.togglePlayer();
+                playPreviousSong ();
             }
         });
 
@@ -110,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
         playNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playNextSong ();
+
                 if (mServiceBound)
                     mBoundService.togglePlayer();
-
+                playNextSong ();
             }
         });
 
@@ -285,40 +286,34 @@ public class MainActivity extends AppCompatActivity {
 
     private void playNextSong () {
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                currentSongIndex = currentSongIndex + 1;
-                Song song = songs.get(currentSongIndex % songs.size());
+
+                currentSongIndex = ++currentSongIndex % songs.size();
+                Song song = songs.get(currentSongIndex );
                 String songAddress = "http://josephxwf.com/music_app/" + song.getArtist() + " -" + song.getTitle();
                 startStreamingService(songAddress);
                 markSongPlayed(song.getId());
                 askForLikes(song);
-            }});
+
 
 
     }
 
     private void playPreviousSong () {
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-
                 Song song = null;
                 if (currentSongIndex > 0) {
-                    currentSongIndex = currentSongIndex - 1;
-                    song = songs.get(currentSongIndex % songs.size());
+                    currentSongIndex = --currentSongIndex % songs.size();
+                    song = songs.get(currentSongIndex );
                 } else {
-                    song = songs.get(songs.size() - 1);
+                    currentSongIndex = songs.size() - 1;
+                    song = songs.get(currentSongIndex);
                 }
                 String songAddress = "http://josephxwf.com/music_app/" + song.getArtist() + " -" + song.getTitle();
                 startStreamingService(songAddress);
                 markSongPlayed(song.getId());
                 askForLikes(song);
 
-            }});
+
     }
 
 
