@@ -1,8 +1,6 @@
 package com.josephxwf.streamingmusic;
 
-/**
- * Created by grant on 12/02/2016.
- */
+
 public class Song {
 
     int Id;

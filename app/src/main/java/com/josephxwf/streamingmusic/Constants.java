@@ -1,8 +1,6 @@
 package com.josephxwf.streamingmusic;
 
-/**
- * Created by grant on 08/02/2016.
- */
+
 public class Constants {
     public interface ACTION {
         public static String MAIN_ACTION = "com.josephxwf.streamingmusic.action.main";

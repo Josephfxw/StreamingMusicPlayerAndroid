@@ -9,9 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import java.util.List;
 
-/**
- * Created by grant on 13/02/2016.
- */
+
 public class SongListAdapter extends BaseAdapter {
 
     private Activity activity;

@@ -6,9 +6,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
-/**
- * Created by grant on 08/02/2016.
- */
+
 public class Player {
 
     String url = "";
